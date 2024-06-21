@@ -8,6 +8,17 @@ export const addTodo = (todo) => ({
     type: "DELETE_TODO",
     payload: id
   });
+
+  export const FetchTodo = ()=>{
+     return (dispatch)=>{
+      dispatch({type:"LoadingInitiated"})
+      /* axios.get("URL").then((response)=>{
+          dispatch({type:"FETCH_SUCCESS",payload:response.data})
+        })
+     
+        */
+     }
+  }
   
   // Async action creator (Thunk)
   export const addTodoAsync = (todo) => {

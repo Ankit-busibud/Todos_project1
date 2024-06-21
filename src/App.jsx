@@ -2,24 +2,24 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addTodoAsync, deleteTodo,addTodo} from '../src/Redux_comp/Action';
 
-const App = ()=>{
+const App = (props)=>{
   handleAddTodo = () => {
     const newTodo = {
       id: Math.random(), // Use better ID generation in production
       date: new Date().toISOString(), // Example date format
       content: 'Sample todo content'
     };
-   addTodoAsync(newTodo);
+   props.Add(newTodo);
   };
 
     return (
       <div>
         <button onClick={this.handleAddTodo}>Add Todo</button>
         <ul>
-          {todos.map(todo => (
+          {props.todos.map(todo => (
             <li key={todo.id}>
               {todo.content} - {todo.date}
-              <button onClick={() =>deleteTodo(todo.id)}>Delete</button>
+              <button onClick={() =>props.Delete(todo.id)}>Delete</button>
             </li>
           ))}
         </ul>
@@ -31,5 +31,10 @@ const App = ()=>{
 const mapStateToProps = state => ({
   todos: state.todos //assuming todos under todos key
 });
-
-export default connect(mapStateToProps, { addTodoAsync, deleteTodo })(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    Add:() => dispatch(addTodoAsync),
+    Delete : ()=> dispatch(deleteTodo)     
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(App);
