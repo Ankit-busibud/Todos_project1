@@ -19,7 +19,7 @@ const App = ()=>{
           {todos.map(todo => (
             <li key={todo.id}>
               {todo.content} - {todo.date}
-              <button onClick={() => this.props.deleteTodo(todo.id)}>Delete</button>
+              <button onClick={() =>deleteTodo(todo.id)}>Delete</button>
             </li>
           ))}
         </ul>
