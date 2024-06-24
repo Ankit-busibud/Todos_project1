@@ -38,25 +38,18 @@ const TodoProvider = ({ children }) => {
     dispatch({ type: 'UPDATE_TODOS', payload: data });
   };
 
-  const addTodo = async (todo) => {
-    const response = await fetch('/api/todos', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(todo),
-    });
-    const data = await response.json();
-    dispatch({ type: 'ADD_TODO', payload: data });
-    queryClient.invalidateQueries('todos');
+  const addTodo = (todo) => {
+    
+    dispatch({ type: 'ADD_TODO', payload: todo});
+  
   };
 
   const deleteTodo = async (id) => {
-    await fetch('/api/todos/${id}', {
+   /* await fetch('/api/todos/${id}', {
       method: 'DELETE',
-    });
+    }); */
     dispatch({ type: 'DELETE_TODO', payload: id });
-    queryClient.invalidateQueries('todos');
+    //queryClient.invalidateQueries('todos');
   };
 
   return (

@@ -3,6 +3,7 @@ import { useTodoContext } from '../context/TodoContext';
 
 const TodoList = () => {
   const { todos, fetchTodos, deleteTodo,updateTodo } = useTodoContext();
+  console.log(todos)
 
   useEffect(() => {
     fetchTodos();
@@ -23,7 +24,7 @@ const TodoList = () => {
           <li key={todo.id}>
             {todo.content} - {todo.date} {/* Adjust based on your todo structure */}
             <button onClick={() => handleDelete(todo.id)}>Delete</button>
-            <button onClick={() => handleUpdate(todo.id)}>Delete</button>
+            <button onClick={() => handleUpdate(todo.id)}>Update</button>
           </li>
         ))}
       </ul>

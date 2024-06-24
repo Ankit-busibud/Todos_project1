@@ -10,6 +10,7 @@ const TodoForm = () => {
       if (!content.trim()) return;
       addTodo({
         content,
+        id : Math.random()*33,
         date: new Date().toISOString(), // Example date format
       });
       setContent('');
