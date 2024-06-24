@@ -1,27 +1,39 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addTodoAsync, deleteTodo,addTodo,UpdateTodo} from '../src/Redux_comp/Action';
-
+import { useState } from 'react';
 const App = (props)=>{
-  handleAddTodo = () => {
+  
+  const[content,setContent]  = useState("")
+  
+  const handleAddTodo = (event) => {
     const newTodo = {
       id: Math.random(), // Use better ID generation in production
       date: new Date().toISOString(), // Example date format
-      content: 'Sample todo content'
+      content: content
     };
-   gitprops.Add(newTodo);
-   props.addTodoAsync(newTodo)
+   props.Add(newTodo);
+   setContent("")
+  // props.addTodoAsync(newTodo)
   };
+  console.log(props.todos)
 
     return (
       <div>
-        <button onClick={this.handleAddTodo}>Add Todo</button>
+        <h1>TODOS_APP</h1>
+        <form>
+          <input type='text' value={content} onChange={(e)=>{ 
+          
+            setContent(e.target.value)}}></input>
+        
+        </form>
+        <button onClick={handleAddTodo}>Add Todo</button>
         <ul>
           {props.todos.map(todo => (
             <li key={todo.id}>
               {todo.content} - {todo.date}
               <button onClick={() =>props.Delete(todo.id)}>Delete</button>
-              <button onClick={()=>props.UpdateTodo(todo.id)}>UpdateTodo</button>
+              <button onClick={()=>props.UpdateTodo(todo.id)}>Update</button>
             </li>
           ))}
         </ul>
@@ -35,9 +47,9 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => {
   return {
-    Add:() => dispatch(addTodoAsync),
-    Delete : ()=> dispatch(deleteTodo),   
-    UpdateTodo: ()=>dispatch(UpdateTodo),
+    Add:(data) => dispatch(addTodo(data)),
+    Delete : (id)=> dispatch(deleteTodo(id)),   
+    UpdateTodo: (id)=>dispatch(UpdateTodo(id)),
     AddTodoAsync:()=> dispatch(addTodoAsync)  
   }
 }
