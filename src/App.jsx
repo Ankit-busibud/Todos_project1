@@ -9,7 +9,8 @@ const App = (props)=>{
       date: new Date().toISOString(), // Example date format
       content: 'Sample todo content'
     };
-   props.Add(newTodo);
+   //props.Add(newTodo);
+   props.addTodoAsync(newTodo)
   };
 
     return (
@@ -34,7 +35,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     Add:() => dispatch(addTodoAsync),
-    Delete : ()=> dispatch(deleteTodo)     
+    Delete : ()=> dispatch(deleteTodo),   
+    
+    AddTodoAsync:()=> dispatch(addTodoAsync)  
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(App);
