@@ -9,7 +9,7 @@ const App = (props)=>{
       date: new Date().toISOString(), // Example date format
       content: 'Sample todo content'
     };
-   //props.Add(newTodo);
+   gitprops.Add(newTodo);
    props.addTodoAsync(newTodo)
   };
 
