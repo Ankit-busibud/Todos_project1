@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 
 export const addTodo = (todo) => ({
     type: "ADD_TODO",
@@ -9,6 +10,12 @@ export const addTodo = (todo) => ({
     payload: id
   });
 
+  export const UpdateTodo = (id) =>{
+    return(dispatch)=>{
+      //async Logic
+      // dispatch({type:"UPDATE" payload:"content"})
+    }
+  }
   export const FetchTodo = ()=>{
      return (dispatch)=>{
       dispatch({type:"LoadingInitiated"})

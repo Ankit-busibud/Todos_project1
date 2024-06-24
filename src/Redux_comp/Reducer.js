@@ -14,6 +14,12 @@ export const TodoReducer = (state = initialState, action) => {
           ...state,
           IsLoading:true
       }
+    case "UPDATE" : 
+     return{
+        ...state,
+        todos: "//updated todos" ,
+
+    }
     case "Fetch_SUCCESS":
       return{
         ...state,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addTodoAsync, deleteTodo,addTodo} from '../src/Redux_comp/Action';
+import { addTodoAsync, deleteTodo,addTodo,UpdateTodo} from '../src/Redux_comp/Action';
 
 const App = (props)=>{
   handleAddTodo = () => {
@@ -21,6 +21,7 @@ const App = (props)=>{
             <li key={todo.id}>
               {todo.content} - {todo.date}
               <button onClick={() =>props.Delete(todo.id)}>Delete</button>
+              <button onClick={()=>props.UpdateTodo(todo.id)}>UpdateTodo</button>
             </li>
           ))}
         </ul>
@@ -36,7 +37,7 @@ const mapDispatchToProps = dispatch => {
   return {
     Add:() => dispatch(addTodoAsync),
     Delete : ()=> dispatch(deleteTodo),   
-    
+    UpdateTodo: ()=>dispatch(UpdateTodo),
     AddTodoAsync:()=> dispatch(addTodoAsync)  
   }
 }
