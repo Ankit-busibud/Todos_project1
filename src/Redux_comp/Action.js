@@ -10,11 +10,16 @@ export const addTodo = (todo) => ({
     payload: id
   });
 
-  export const UpdateTodo = (id) =>{
-    return(dispatch)=>{
+  export const UpdateTodo = (id,content) =>{
+     
+     return{
+       type:"UPDATE",
+       payload:{id,content}
+     }
+    /* return(dispatch)=>{
       //async Logic
       // dispatch({type:"UPDATE" payload:"content"})
-    }
+    } */
   }
   export const FetchTodo = ()=>{
      return (dispatch)=>{

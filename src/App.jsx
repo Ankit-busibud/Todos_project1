@@ -8,7 +8,7 @@ const App = (props)=>{
   
   const handleAddTodo = (event) => {
     const newTodo = {
-      id: Math.random(), // Use better ID generation in production
+      id: Math.random()*10, // Use better ID generation in production
       date: new Date().toISOString(), // Example date format
       content: content
     };
@@ -33,7 +33,9 @@ const App = (props)=>{
             <li key={todo.id}>
               {todo.content} - {todo.date}
               <button onClick={() =>props.Delete(todo.id)}>Delete</button>
-              <button onClick={()=>props.UpdateTodo(todo.id)}>Update</button>
+              <button onClick={()=>{props.UpdateTodo(todo.id,content)
+                setContent("")
+              }}>Update</button>
             </li>
           ))}
         </ul>
@@ -49,7 +51,7 @@ const mapDispatchToProps = dispatch => {
   return {
     Add:(data) => dispatch(addTodo(data)),
     Delete : (id)=> dispatch(deleteTodo(id)),   
-    UpdateTodo: (id)=>dispatch(UpdateTodo(id)),
+    UpdateTodo: (id,content)=>dispatch(UpdateTodo(id,content)),
     AddTodoAsync:()=> dispatch(addTodoAsync)  
   }
 }
