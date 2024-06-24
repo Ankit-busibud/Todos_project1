@@ -10,7 +10,9 @@ const initialState = {
 
 const todoReducer = (state, action) => {
   switch (action.type) {
-    case 'SET_TODOS':
+    case "FETCH_TODOS":
+      return{...state,todos:action.payload}
+    case 'UPDATE_TODOS':
       return { ...state, todos: action.payload };
     case 'ADD_TODO':
       return { ...state, todos: [...state.todos, action.payload] };
@@ -28,7 +30,12 @@ const TodoProvider = ({ children }) => {
   const fetchTodos = async () => {
     const response = await fetch('/api/todos'); // Replace with your API endpoint
     const data = await response.json();
-    dispatch({ type: 'SET_TODOS', payload: data });
+    dispatch({ type: 'FETCH_TODOS', payload: data });
+  };
+  const updateTodo = async () => {
+    const response = await fetch('/api/todos'); // Replace with your API endpoint
+    const data = await response.json();
+    dispatch({ type: 'UPDATE_TODOS', payload: data });
   };
 
   const addTodo = async (todo) => {
@@ -53,7 +60,7 @@ const TodoProvider = ({ children }) => {
   };
 
   return (
-    <TodoContext.Provider value={{ todos: state.todos, addTodo, deleteTodo, fetchTodos }}>
+    <TodoContext.Provider value={{ todos: state.todos, addTodo, deleteTodo, fetchTodos,updateTodo }}>
       {children}
     </TodoContext.Provider>
   );
